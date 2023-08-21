@@ -57,7 +57,7 @@ while GAME_ON:
         score_1.update_score(1)
 
     # collisions with paddle
-    if (ball.xcor() < paddle_1.xcor() + 30 and paddle_1.ycor() + 60 > ball.ycor() > paddle_1.ycor() - 60) or (ball.xcor() > paddle_2.xcor() - 30 and paddle_2.ycor() + 60 > ball.ycor() > paddle_2.ycor() - 60):
+    if (ball.distance(paddle_1) < 50 and ball.xcor() < -350) or (ball.distance(paddle_2) < 50 and ball.xcor() > 350):
         ball.xdirection *= -1
         ball.ball_speed += 0.8
 

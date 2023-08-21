@@ -16,7 +16,7 @@ class Ball(turtle.Turtle):
         self.xdirection *= -1
 
     def create_ball(self):
-        self.shape("square")
+        self.shape("circle")
         self.penup()
         self.color("white")
         self.move()
