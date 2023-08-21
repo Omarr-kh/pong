@@ -1,5 +1,6 @@
 import turtle
 from paddle import Paddle
+from scoreboard import Score
 from ball import Ball
 import time
 
@@ -32,6 +33,8 @@ paddle_1.create_paddle(1)
 paddle_2 = Paddle()
 paddle_2.create_paddle(2)
 ball = Ball()
+score_1 = Score(1)
+score_2 = Score(2)
 
 # Even listeners (controls)
 screen.listen()
@@ -45,13 +48,18 @@ while GAME_ON:
     screen.update()
     ball.move()
     # collisions with walls
-    if ball.xcor() < -390 or ball.xcor() > 383:
-        GAME_ON = False
+    if ball.xcor() < -390:
+        ball.reset_ball(1)
+        score_2.update_score(2)
+    if ball.xcor() > 383:
+        # GAME_ON = False
+        ball.reset_ball(2)
+        score_1.update_score(1)
 
     # collisions with paddle
     if (ball.xcor() < paddle_1.xcor() + 30 and paddle_1.ycor() + 60 > ball.ycor() > paddle_1.ycor() - 60) or (ball.xcor() > paddle_2.xcor() - 30 and paddle_2.ycor() + 60 > ball.ycor() > paddle_2.ycor() - 60):
         ball.xdirection *= -1
-        ball.ball_speed += 0.7
+        ball.ball_speed += 0.8
 
     # collision with celing and floor
     if ball.ycor() > 280 or ball.ycor() < -280:
